@@ -1,31 +1,17 @@
 resource "aws_s3_bucket" "web_enabled_bucket" {
-    bucket = "bootcamp-dev.com"
+    bucket = "bootcamp-${var.environment}.com"
 
     tags = {
-        Environment = "Dev"
+        Environment = var.environment
         description = "Test bucket"
     }
 
 }
 
-resource "aws_s3_object" "upload" {
-    for_each = module.dir.files
-
+ resource "aws_s3_bucket_acl" "web_enabled_bucket_acl" {
     bucket = aws_s3_bucket.web_enabled_bucket.id
-    key = each.key
-    content_type = each.value.content_type
-        
-    source = each.value.source_path
-    content = each.value.content 
-    
-    etag = each.value.digests.md5
+    acl = "public-read"
 }
-
-# resource "aws_s3_bucket_acl" "web_enabled_bucket_acl" {
-#    bucket = aws_s3_bucket.web_enabled_bucket.id
-#    acl = "public-read"
-#
-#}
 
 resource "aws_s3_bucket_website_configuration" "web_enabled_bucket_config" {
     bucket = aws_s3_bucket.web_enabled_bucket.id

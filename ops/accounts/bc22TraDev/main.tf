@@ -5,3 +5,9 @@ terraform {
         region = "us-east-1"
     }
 }
+
+
+module "web" {
+    source = "../../resources/web"
+    environment = "dev"
+}
