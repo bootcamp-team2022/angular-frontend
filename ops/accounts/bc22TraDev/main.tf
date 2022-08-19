@@ -11,3 +11,8 @@ module "web" {
     source = "../../resources/web"
     environment = "dev"
 }
+
+module "instances" {
+    source = "../../resources/instances"
+    volume_size = 100
+}
