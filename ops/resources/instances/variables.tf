@@ -1,3 +1,3 @@
 variable "volume_size" {
-    type = string
+  type = string
 }

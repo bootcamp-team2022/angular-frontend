@@ -1,38 +1,38 @@
 resource "aws_s3_bucket" "web_enabled_bucket" {
-    bucket = "bootcamp-${var.environment}.com"
+  bucket = "bootcamp-${var.environment}.com"
 
-    tags = {
-        Environment = var.environment
-        description = "Test bucket"
-    }
+  tags = {
+    Environment = var.environment
+    description = "Test bucket"
+  }
 
 }
 
- resource "aws_s3_bucket_acl" "web_enabled_bucket_acl" {
-    bucket = aws_s3_bucket.web_enabled_bucket.id
-    acl = "public-read"
+resource "aws_s3_bucket_acl" "web_enabled_bucket_acl" {
+  bucket = aws_s3_bucket.web_enabled_bucket.id
+  acl    = "public-read"
 }
 
 resource "aws_s3_bucket_website_configuration" "web_enabled_bucket_config" {
-    bucket = aws_s3_bucket.web_enabled_bucket.id
-    
-    index_document {
-        suffix = "index.html"    
-    }
+  bucket = aws_s3_bucket.web_enabled_bucket.id
 
-    error_document {
-        key = "error.html"
-    }
+  index_document {
+    suffix = "index.html"
+  }
 
-    depends_on = [
-      aws_s3_bucket_policy.web_bucket_anon_policy
-    ]
+  error_document {
+    key = "error.html"
+  }
+
+  depends_on = [
+    aws_s3_bucket_policy.web_bucket_anon_policy
+  ]
 }
 
 resource "aws_s3_bucket_policy" "web_bucket_anon_policy" {
-    bucket = aws_s3_bucket.web_enabled_bucket.id
+  bucket = aws_s3_bucket.web_enabled_bucket.id
 
-    policy = <<EOF
+  policy = <<EOF
     {
     "Version": "2012-10-17",
     "Statement": [

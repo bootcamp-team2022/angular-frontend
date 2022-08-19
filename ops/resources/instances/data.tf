@@ -13,3 +13,8 @@ data "aws_ami" "ubuntu" {
 
   owners = ["099720109477"] # Canonical
 }
+
+data "aws_key_pair" "bootcamp_key" {
+  key_name           = "instance-key"
+  include_public_key = true
+}
