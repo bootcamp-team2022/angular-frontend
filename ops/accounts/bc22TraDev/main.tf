@@ -9,10 +9,10 @@ terraform {
 
 module "web" {
   source      = "../../resources/web"
-  environment = "dev"
+  environment = var.environment
 }
 
 module "instances" {
   source      = "../../resources/instances"
-  volume_size = 100
+  volume_size = var.volume_size
 }
