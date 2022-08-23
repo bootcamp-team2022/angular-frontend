@@ -6,7 +6,17 @@ on:
     - main
 
 jobs:
+  build-angular-application:
+    name: Upload Website
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
   build-deploy-operation:
+    name: Build and Deploy Application
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -31,4 +41,3 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-east-1'   # optional: defaults to us-east-1
           SOURCE_DIR: 'dist'      # optional: defaults to entire repository
-  
