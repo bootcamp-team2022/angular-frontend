@@ -23,7 +23,7 @@ jobs:
       - name: Generating build assets
         run: ng build
       - name: Uploading Build Assets to S3
-      - uses: jakejarvis/s3-sync-action@master
+        uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read --follow-symlinks --delete
         env:
