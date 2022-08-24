@@ -45,5 +45,6 @@ jobs:
       - name: Install Angular Dependencies
         run: |
           npm install -g @angular/cli
+          npm ci
       - name: Run Angular Test
         run: ng test
