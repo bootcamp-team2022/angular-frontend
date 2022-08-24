@@ -19,7 +19,7 @@ module "instances" {
 
 module "vpc" {
     source = "../../resources/vpc"
-    environment = "dev"
+    environment = var.environment
 
     bc22_vpc_cidr = "10.20.22.0/24"
 
