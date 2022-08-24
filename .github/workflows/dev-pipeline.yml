@@ -31,4 +31,20 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-east-1'   
-          SOURCE_DIR: 'dist' 
+          SOURCE_DIR: 'dist'
+  angular-test-application:
+    name: Launch Testing Harness 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Install Node Dependencies
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+      - name: Install Angular Dependencies
+        run: |
+          npm install -g @angular/cli
+          npm ci
+      - name: Run Angular Test
+        run: ng test
