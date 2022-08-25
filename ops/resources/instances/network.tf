@@ -17,19 +17,19 @@ resource "aws_security_group" "bc_security1" {
   vpc_id = aws_vpc.bc_network1.id
 
   ingress {
-      cidr_blocks = [
-        "0.0.0.0/0"
-  ]
+    cidr_blocks = [
+      "0.0.0.0/0"
+    ]
 
-  from_port = 22
-      to_port = 22
-      protocol = "tcp"
+    from_port = 22
+    to_port   = 22
+    protocol  = "tcp"
   }
 
   egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
