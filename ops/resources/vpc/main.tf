@@ -13,7 +13,7 @@ resource "aws_vpc" "bc22_main_vpc" {
 resource "aws_subnet" "bc22_priv_subnet_a" {
     vpc_id = aws_vpc.bc22_main_vpc.id
 
-    cidr_block = var.bc22_subnet_cidr["dbsn1"]
+    cidr_block = var.bc22_subnet_cidr["dbsn_a"]
 
     availability_zone = var.bc22_az["az_a"]
 
@@ -26,7 +26,7 @@ resource "aws_subnet" "bc22_priv_subnet_a" {
 resource "aws_subnet" "bc22_priv_subnet_b" {
     vpc_id = aws_vpc.bc22_main_vpc.id
 
-    cidr_block = var.bc22_subnet_cidr["dbsn2"]
+    cidr_block = var.bc22_subnet_cidr["dbsn_b"]
 
     availability_zone = var.bc22_az["az_b"]
 
@@ -64,5 +64,17 @@ resource "aws_network_acl" "bc22_nacl_sna" {
         Description = "Manage by Terraform for ${var.environment} environment."
     }
 
+}
+
+resource "aws_db_subnet_group" "bc2020-dbsngrp" {
+    name = "bc22sngrp01-${var.environment}"
+    subnet_ids = [aws_subnet.bc22_priv_subnet_a.id, aws_subnet.bc22_priv_subnet_a.id]
+
+    depends_on = [aws_vpc.bc22_main_vpc, aws_subnet.bc22_priv_subnet_a, aws_subnet.bc22_priv_subnet_b, aws_db_instance.bc2022-db-free]
+}
+
+output "db_subnet_output" {
+    description = "DB Subnet Group"
+    value = "${aws_db_subnet_group.bc2020-dbsngrp.id}"
 }
 

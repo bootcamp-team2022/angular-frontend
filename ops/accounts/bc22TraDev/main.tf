@@ -24,12 +24,23 @@ module "vpc" {
     bc22_vpc_cidr = "10.20.22.0/24"
 
     bc22_subnet_cidr = {
-        "dbsn1" = "10.20.22.64/26"
-        "dbsn2" = "10.20.22.192/26"
+        "dbsn_a" = "10.20.22.64/26"
+        "dbsn_b" = "10.20.22.192/26"
     }
 	
     bc22_az = {
         "az_a" = "us-east-1a"
         "az_b" = "us-east-1b"
     }
+}
+
+module "database" {
+    source = "../../resources/database"
+
+    db_pass = var.db_pass
+    db_user = var.db_user
+
+    environment = var.environment
+
+    subnetgroup = "${module.vpc.db_subnet_output}"
 }

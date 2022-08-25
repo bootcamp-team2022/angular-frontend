@@ -1,15 +1,19 @@
-variable "bc22_vpc_cidr" {
+variable "db_user" {
+    description = "Database admin username"
     type = string
+    sensitive = true
 }
 
-variable "bc22_subnet_cidr" {
-    type = map
-}
-
-variable "bc22_az" {
-    type = map
+variable "db_pass" {
+    description = "Database password"
+    type = string
+    sensitive = true
 }
 
 variable "environment" {
-  type = string
+    type = string
+}
+
+variable "subnetgroup" {
+    type = string
 }
