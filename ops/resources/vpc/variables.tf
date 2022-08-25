@@ -11,5 +11,5 @@ variable "bc22_az" {
 }
 
 variable "environment" {
-  type = string
+    type = string
 }

@@ -1,19 +1,19 @@
 variable "db_user" {
-    description = "Database admin username"
-    type = string
-    sensitive = true
+  description = "Database admin username"
+  type        = string
+  sensitive   = true
 }
 
 variable "db_pass" {
-    description = "Database password"
-    type = string
-    sensitive = true
+  description = "Database password"
+  type        = string
+  sensitive   = true
 }
 
 variable "environment" {
-    type = string
+  type = string
 }
 
 variable "subnetgroup" {
-    type = string
+  type = string
 }
