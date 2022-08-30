@@ -1,4 +1,4 @@
-name: Upload Website
+name: Development Pipeline
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
-    - name: Login to Amazon ECR
+    - name: Logging in to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
     - name: Build, tag, and push the image to Amazon ECR
@@ -33,7 +33,7 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
   build-deploy-operation:
-    name: Build & Deploy Application
+    name: Building and Deploying Application
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -42,7 +42,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '16.x'
-      - name: Install Angular Dependencies
+      - name: Installing Angular Dependencies
         run: |
           npm install -g @angular/cli
           npm ci
@@ -73,7 +73,7 @@ jobs:
         uses: peter-evans/create-pull-request@v4.1.1
         with:
           commit-message: terraform fmt
-          title: Reformat terraform files
+          title: Reformatting terraform files
           body: Update terraform files to canonical format using `terraform fmt`
           branch: automated-terraform-fmt
   tf-deployment:
