@@ -91,3 +91,10 @@ jobs:
           title: Reformat terraform files
           body: Update terraform files to canonical format using `terraform fmt`
           branch: automated-terraform-fmt
+    tf-deployment:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Deploying Application
+        run: make all environment=bc22TraDev
