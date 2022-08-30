@@ -33,7 +33,6 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
   build-deploy-operation:
-    needs: [ test-angular-application ]
     name: Build & Deploy Application
     runs-on: ubuntu-latest
     steps:
