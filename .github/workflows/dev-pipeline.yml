@@ -52,7 +52,7 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
   build-deploy-operation:
-    needs: [ test-angular-application, ecr-image-build ]
+    needs: [ test-angular-application ]
     name: Build & Deploy Application
     runs-on: ubuntu-latest
     steps:
@@ -79,7 +79,7 @@ jobs:
           AWS_REGION: 'us-east-1'   
           SOURCE_DIR: 'dist'
   tf-formatting:
-    needs: [ test-angular-application, ecr-image-build, build-deploy-operation]
+    needs: [ build-deploy-operation ]
     name: Automating Terraform Formatting
     runs-on: ubuntu-latest
     steps:
@@ -97,7 +97,7 @@ jobs:
           body: Update terraform files to canonical format using `terraform fmt`
           branch: automated-terraform-fmt
   tf-deployment:
-    needs: [ test-angular-application, ecr-image-build, build-deploy-operation, tf-formatting ]
+    needs: [ tf-formatting ]
     name: Updating Amazon Infrastructure
     runs-on: ubuntu-latest
     steps:
