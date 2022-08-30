@@ -76,31 +76,18 @@ jobs:
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
   tf-formatting:
     runs-on: ubuntu-latest
-    name: Automated Terraform Formatting
+    name: Automating Terraform Formatting
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Terraform Formatting
         uses: dflook/terraform-fmt@v1
         with:
           path: ./ops
-      - name: Create Pull Request
+      - name: Creating Pull Request
         uses: peter-evans/create-pull-request@v2
         with:
           commit-message: terraform fmt
           title: Reformat terraform files
           body: Update terraform files to canonical format using `terraform fmt`
           branch: automated-terraform-fmt
-  tf-validate:
-    runs-on: ubuntu-latest
-    name: Validate terraform
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: terraform validate
-        uses: dflook/terraform-validate@v1
-        with:
-          path: /ops/accounts/bc22TraDev/
-      - name: Validate failed
-        if: ${{ failure() && steps.validate.outputs.failure-reason == 'validate-failed' }}
-        run: echo "terraform validate failed"
