@@ -1,5 +1,3 @@
-export AWS_PROFILE=default
-
 all: bootcamp-dev
 
 bootcamp-dev: 
