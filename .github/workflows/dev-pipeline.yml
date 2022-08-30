@@ -48,11 +48,3 @@ jobs:
           npm ci
       - name: Run Angular Test
         run: ng test
-  Run MakeFile:
-    name: MakeFile
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-      - name: Build Application
-        run: make build              

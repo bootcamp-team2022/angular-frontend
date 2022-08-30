@@ -3,6 +3,9 @@ terraform {
     bucket = "bc2022-remote-tfstate"
     key    = "dev/terraform.tfstate"
     region = "us-east-1"
+
+    dynamodb_table = "terraform-dynamodb-locking"
+    encrypt        = true
   }
 }
 
