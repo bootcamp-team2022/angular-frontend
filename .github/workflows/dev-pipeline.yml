@@ -22,6 +22,8 @@ jobs:
           npm ci
       - name: Run Angular Test
         run: ng test
+        env:
+          CI: true
   ecr-image-build:
     needs: test-angular-application
     name: Shipping Docker Image
