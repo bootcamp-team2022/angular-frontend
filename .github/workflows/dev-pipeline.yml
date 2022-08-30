@@ -76,14 +76,14 @@ jobs:
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
   tf-formatting:
     runs-on: ubuntu-latest
-    name: Check terraform file are formatted correctly
+    name: Automated Terraform Formatting
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: terraform fmt
+      - name: Terraform Formatting
         uses: dflook/terraform-fmt@v1
         with:
-          path: /ops/accounts/bc22TraDev/
+          path: ./ops
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v2
         with:
