@@ -3,11 +3,11 @@ name: Testing Code
 on:
   pull_request:
     branches:
-      - main
+    - main
 
 jobs:
   test-angular-application:
-    name: Launch Testing Harness 
+    name: Launching Test Harness 
     runs-on: ubuntu-latest
     steps: 
       - name: Checkout Repository
@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '16.x'
-      - name: Install Angular Dependencies
+      - name: Installing Angular Dependencies
         run: |
           npm install -g @angular/cli
           npm ci
