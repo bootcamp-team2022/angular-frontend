@@ -85,7 +85,7 @@ jobs:
         with:
           path: ./ops
       - name: Creating Pull Request
-        uses: peter-evans/create-pull-request@v2
+        uses: peter-evans/create-pull-request@v4.1.1
         with:
           commit-message: terraform fmt
           title: Reformat terraform files
