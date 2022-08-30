@@ -6,26 +6,7 @@ on:
     - main
 
 jobs:
-  test-angular-application:
-    name: Launch Testing Harness 
-    runs-on: ubuntu-latest
-    steps: 
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-      - name: Install Node Dependencies
-        uses: actions/setup-node@v1
-        with:
-          node-version: '16.x'
-      - name: Install Angular Dependencies
-        run: |
-          npm install -g @angular/cli
-          npm ci
-      - name: Run Angular Test
-        run: ng test
-        env:
-          CI: true
   ecr-image-build:
-    needs: test-angular-application
     name: Shipping Docker Image
     runs-on: ubuntu-latest
     steps:
