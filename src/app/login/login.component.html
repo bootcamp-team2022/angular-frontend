@@ -1,4 +1,4 @@
-<amplify-authenticator>
+<amplify-authenticator *ngIf="authState !== 'signedin'">
     <ng-template
       amplifySlot="authenticated"
       let-user="user"
