@@ -1,5 +1,6 @@
 {
   "AppSyncApiName": "bootcampteamrepo",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2022-09-01T17:33:23.550Z"
 }
