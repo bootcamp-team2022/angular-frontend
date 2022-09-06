@@ -33,6 +33,7 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
   build-deploy-operation:
+    needs: [ tf-deployment ]
     name: Building and Deploying Application
     runs-on: ubuntu-latest
     steps:
@@ -59,7 +60,6 @@ jobs:
           AWS_REGION: 'us-east-1'   
           SOURCE_DIR: 'dist'
   tf-formatting:
-    needs: [ build-deploy-operation ]
     name: Automating Terraform Formatting
     runs-on: ubuntu-latest
     steps:

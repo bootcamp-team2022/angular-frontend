@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "web_enabled_bucket" {
-  bucket = "bootcamp-${var.environment}.com"
+  bucket = "${var.environment}.cloudtechcamp.com"
 
   tags = {
     Environment = var.environment
