@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bootcampteamrepo-dev-111848-authRole",
+      "UnauthRoleArn": "arn:aws:iam::133391575729:role/amplify-bootcampteamrepo-dev-111848-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::133391575729:role/amplify-bootcampteamrepo-dev-111848-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-bootcampteamrepo-dev-111848-deployment",
+      "UnauthRoleName": "amplify-bootcampteamrepo-dev-111848-unauthRole",
+      "StackName": "amplify-bootcampteamrepo-dev-111848",
+      "StackId": "arn:aws:cloudformation:us-east-1:133391575729:stack/amplify-bootcampteamrepo-dev-111848/619488f0-2a09-11ed-9aaa-12f2079f0ffd",
+      "AmplifyAppId": "d3m8mao6bg83u8"
+    },
+    "categories": {
+      "auth": {
+        "bootcampteamrepoa96da95e": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d3m8mao6bg83u8",
+          "type": "manual"
+        }
+      }
+    }
+  }
+}
