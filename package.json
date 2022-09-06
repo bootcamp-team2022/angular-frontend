@@ -21,6 +21,7 @@
     "@angular/router": "^14.1.0",
     "@aws-amplify/ui-angular": "^2.4.19",
     "aws-amplify": "^3.3.18",
+    "graphql": "^16.6.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
