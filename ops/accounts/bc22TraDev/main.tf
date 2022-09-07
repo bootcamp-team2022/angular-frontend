@@ -46,5 +46,11 @@ module "database" {
   environment = var.environment
 
   subnetgroup = module.vpc.db_subnet_output
-
 }
+module "cloudtechcamp" {
+  source = "../../resources/cloudtechcamp"
+  environment = var.environment
+
+  }
+
+
