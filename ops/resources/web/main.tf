@@ -1,9 +1,25 @@
 resource "aws_s3_bucket" "web_enabled_bucket" {
   bucket = "${var.environment}.cloudtechcamp.com"
 
+  logging {
+    target_bucket = aws_s3_bucket.logging_bucket.id
+    target_prefix = "logs/"
+  }
+
   tags = {
     Environment = var.environment
     description = "Test bucket"
+  }
+
+}
+
+resource "aws_s3_bucket" "logging_bucket" {
+  bucket = "${var.environment}.logs.cloudtechcamp.com"
+  key    = "logs/"
+
+  tags = {
+    Environment = var.environment
+    description = "Logs bucket"
   }
 
 }
