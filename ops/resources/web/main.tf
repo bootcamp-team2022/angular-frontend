@@ -15,13 +15,18 @@ resource "aws_s3_bucket" "web_enabled_bucket" {
 
 resource "aws_s3_bucket" "logging_bucket" {
   bucket = "${var.environment}.logs.cloudtechcamp.com"
-  key    = "logs/"
 
   tags = {
     Environment = var.environment
     description = "Logs bucket"
   }
 
+}
+
+resource "aws_s3_bucket_object" "logging_object" {
+    bucket  = aws_s3_bucket.logging_bucket.id
+    acl     = "public"
+    key     =  "logs/"
 }
 
 resource "aws_s3_bucket_acl" "web_enabled_bucket_acl" {
