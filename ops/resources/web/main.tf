@@ -29,6 +29,16 @@ resource "aws_s3_bucket_website_configuration" "web_enabled_bucket_config" {
   ]
 }
 
+resource "aws_s3_bucket" "web_enabled_bucket" {
+  bucket = "Logs.cloudtechcamp.com"
+
+  tags = {
+    Environment = var.environment
+    description = "Logs bucket"
+  }
+
+}
+
 resource "aws_s3_bucket_policy" "web_bucket_anon_policy" {
   bucket = aws_s3_bucket.web_enabled_bucket.id
 
