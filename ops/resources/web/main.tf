@@ -1,11 +1,6 @@
 resource "aws_s3_bucket" "web_enabled_bucket" {
   bucket = "${var.environment}.cloudtechcamp.com"
 
-  logging {
-    target_bucket = aws_s3_bucket.logging_bucket.id
-    target_prefix = "logs/"
-  }
-
   tags = {
     Environment = var.environment
     description = "Test bucket"
@@ -23,10 +18,18 @@ resource "aws_s3_bucket" "logging_bucket" {
 
 }
 
-resource "aws_s3_bucket_object" "logging_object" {
-    bucket  = aws_s3_bucket.logging_bucket.id
-    acl     = "public-read"
-    key     =  "logs/"
+resource "aws_s3_object" "logging_object" {
+    bucket = aws_s3_bucket.logging_bucket.id
+    acl    = "public-read"
+    key    = "logs/"
+}
+
+
+resource "aws_s3_bucket_logging" "enable_logging" {
+  bucket = aws_s3_bucket.web_enabled_bucket.id
+
+  target_bucket = aws_s3_bucket.logging_bucket.id
+  target_prefix = "logs/"
 }
 
 resource "aws_s3_bucket_acl" "web_enabled_bucket_acl" {
