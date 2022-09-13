@@ -25,7 +25,7 @@ resource "aws_s3_bucket" "logging_bucket" {
 
 resource "aws_s3_bucket_object" "logging_object" {
     bucket  = aws_s3_bucket.logging_bucket.id
-    acl     = "public"
+    acl     = "public-read"
     key     =  "logs/"
 }
 
